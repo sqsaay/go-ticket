@@ -8,6 +8,66 @@ const doc = {
   host: 'goticket-api-w7nh.onrender.com',
   schemes: ['https'],
   '@definitions': {
+    UserCreate: {
+      type: 'object',
+      required: ['firstName', 'lastName', 'email'],
+      properties: {
+        firstName: { type: 'string', maxLength: 50, example: 'Taylor' },
+        lastName: { type: 'string', maxLength: 50, example: 'Morgan' },
+        email: { type: 'string', format: 'email', example: 'taylor@example.com' },
+        role: { type: 'string', enum: ['attendee', 'admin'], default: 'attendee' },
+        oauthProvider: { type: 'string', enum: ['google', 'github'], example: 'google' },
+        oauthId: { type: 'string', example: 'google-user-123' },
+        phone: { type: 'string', pattern: '^[0-9+()\\-\\s]{7,20}$', example: '+1 801 555 0100' },
+        isActive: { type: 'boolean', default: true }
+      }
+    },
+    UserUpdate: {
+      type: 'object',
+      required: ['firstName', 'lastName', 'email'],
+      properties: {
+        firstName: { type: 'string', maxLength: 50, example: 'Taylor' },
+        lastName: { type: 'string', maxLength: 50, example: 'Morgan' },
+        email: { type: 'string', format: 'email', example: 'taylor@example.com' },
+        role: { type: 'string', enum: ['attendee', 'admin'], default: 'attendee' },
+        oauthProvider: { type: 'string', enum: ['google', 'github'], example: 'google' },
+        oauthId: { type: 'string', example: 'google-user-123' },
+        phone: { type: 'string', pattern: '^[0-9+()\\-\\s]{7,20}$', example: '+1 801 555 0100' },
+        isActive: { type: 'boolean', default: true }
+      }
+    },
+    EventCreate: {
+      type: 'object',
+      required: ['title', 'description', 'date', 'time', 'venueId', 'price', 'category'],
+      properties: {
+        title: { type: 'string', minLength: 3, maxLength: 120, example: 'Summer Music Festival' },
+        description: { type: 'string', minLength: 10, example: 'An outdoor festival featuring local artists.' },
+        date: { type: 'string', format: 'date-time', example: '2027-06-15T00:00:00.000Z' },
+        time: { type: 'string', pattern: '^([01]\\d|2[0-3]):[0-5]\\d$', example: '19:30' },
+        venueId: { type: 'string', pattern: '^[0-9a-fA-F]{24}$', example: '507f1f77bcf86cd799439011' },
+        price: { type: 'number', minimum: 0, example: 35 },
+        category: { type: 'string', enum: ['concert', 'conference', 'sports', 'theatre', 'festival', 'workshop', 'other'], example: 'festival' },
+        status: { type: 'string', enum: ['draft', 'published', 'cancelled', 'completed'], default: 'draft' },
+        organizerId: { type: 'string', pattern: '^[0-9a-fA-F]{24}$', example: '507f1f77bcf86cd799439012' },
+        isActive: { type: 'boolean', default: true }
+      }
+    },
+    EventUpdate: {
+      type: 'object',
+      required: ['title', 'description', 'date', 'time', 'venueId', 'price', 'category'],
+      properties: {
+        title: { type: 'string', minLength: 3, maxLength: 120, example: 'Summer Music Festival' },
+        description: { type: 'string', minLength: 10, example: 'An outdoor festival featuring local artists.' },
+        date: { type: 'string', format: 'date-time', example: '2027-06-15T00:00:00.000Z' },
+        time: { type: 'string', pattern: '^([01]\\d|2[0-3]):[0-5]\\d$', example: '19:30' },
+        venueId: { type: 'string', pattern: '^[0-9a-fA-F]{24}$', example: '507f1f77bcf86cd799439011' },
+        price: { type: 'number', minimum: 0, example: 35 },
+        category: { type: 'string', enum: ['concert', 'conference', 'sports', 'theatre', 'festival', 'workshop', 'other'], example: 'festival' },
+        status: { type: 'string', enum: ['draft', 'published', 'cancelled', 'completed'], default: 'draft' },
+        organizerId: { type: 'string', pattern: '^[0-9a-fA-F]{24}$', example: '507f1f77bcf86cd799439012' },
+        isActive: { type: 'boolean', default: true }
+      }
+    },
     VenueCreate: {
       type: 'object',
       required: ['name', 'description', 'capacity', 'address', 'location', 'contactEmail'],
