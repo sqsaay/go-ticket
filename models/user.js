@@ -60,4 +60,15 @@ const userSchema = new mongoose.Schema({
   }
 }, { timestamps: true });
 
+userSchema.index(
+  { oauthProvider: 1, oauthId: 1 },
+  {
+    unique: true,
+    partialFilterExpression: {
+      oauthProvider: { $exists: true },
+      oauthId: { $exists: true }
+    }
+  }
+);
+
 module.exports = mongoose.model('User', userSchema);
