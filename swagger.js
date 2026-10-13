@@ -5,7 +5,7 @@ const doc = {
     title: 'GoTicket API',
     description: 'Oficial documentation for the API from GoTicket.',
   },
-  host: 'goticket-api-7211.onrender.com/',
+  host: 'goticket-api-7211.onrender.com',
   schemes: ['https'],
   '@definitions': {
     UserCreate: {

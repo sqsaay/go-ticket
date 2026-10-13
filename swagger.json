@@ -5,7 +5,7 @@
     "description": "Oficial documentation for the API from GoTicket.",
     "version": "1.0.0"
   },
-  "host": "goticket-api-7211.onrender.com/",
+  "host": "goticket-api-7211.onrender.com",
   "basePath": "/",
   "schemes": [
     "https"
